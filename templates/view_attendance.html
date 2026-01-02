@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Attendance</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="navbar">
+    <h2>Attendance System</h2>
+    <a class="logout" href="/dashboard">Back</a>
+</div>
+
+<div class="container">
+    <h1>View Attendance</h1>
+
+    <form method="post" class="filter-form">
+        <label>Select Date:</label>
+        <input type="date" name="date" required>
+        <button>View Attendance</button>
+    </form>
+
+    {% if records %}
+    <table class="styled-table">
+        <tr>
+            <th>Name</th>
+            <th>Roll</th>
+            <th>Class</th>
+            <th>Date</th>
+            <th>Status</th>
+        </tr>
+
+        {% for r in records %}
+        <tr>
+            <td>{{ r.name }}</td>
+            <td>{{ r.roll }}</td>
+            <td>{{ r.class }}</td>
+            <td>{{ r.date }}</td>
+            <td class="{{ 'present' if r.status == 'Present' else 'absent' }}">
+                {{ r.status }}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</div>
+
+</body>
+</html>

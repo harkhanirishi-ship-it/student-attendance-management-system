@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mark Attendance</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="navbar">
+    <h2>Attendance System</h2>
+    <a class="logout" href="/dashboard">Back</a>
+</div>
+
+<div class="container">
+    <h1>Mark Attendance</h1>
+    <p>Date: <strong>{{ today }}</strong></p>
+
+    {% if already_marked %}
+        <p class="error">Attendance already marked for today.</p>
+    {% else %}
+    <form method="post">
+        <table class="styled-table">
+            <tr>
+                <th>Name</th>
+                <th>Roll</th>
+                <th>Status</th>
+            </tr>
+
+            {% for s in students %}
+            <tr>
+                 <td>{{ s.name }}</td>
+                 <td>{{ s.roll }}</td>
+                <td>
+                    {% if s.id in marked_ids %}
+                        <span class="present">Already Marked</span>
+                     {% else %}
+                         <select name="{{ s.id }}">
+                              <option value="Present">Present</option>
+                              <option value="Absent">Absent</option>
+                         </select>
+                    {% endif %}
+                </td>
+            </tr>
+
+            {% endfor %}
+        </table>
+
+        <button class="main-btn">Submit Attendance</button>
+    </form>
+    {% endif %}
+</div>
+
+</body>
+</html>

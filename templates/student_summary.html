@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Attendance Summary</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="navbar">
+    <h2>Attendance System</h2>
+    <a class="logout" href="/dashboard">Back</a>
+</div>
+
+<div class="container">
+    <h1>Student Attendance Summary (Last 1 Year)</h1>
+
+    <form method="post">
+        <label>Select Student:</label>
+        <select name="student_id" required>
+            <option value="">-- Select Student --</option>
+            {% for s in students %}
+            <option value="{{ s.id }}"
+                  {% if selected_student == s.id %}selected{% endif %}>
+                  {{ s.name }} ({{ s.roll }})
+            </option>
+            {% endfor %}
+        </select>
+
+
+        <button class="main-btn">Check Attendance</button>
+    </form>
+
+    {% if summary %}
+    <table class="styled-table">
+        <tr>
+            <th>Total Days</th>
+            <th>Present</th>
+            <th>Absent</th>
+        </tr>
+        <tr>
+            <td>{{ summary.total }}</td>
+            <td class="present">{{ summary.present }}</td>
+            <td class="absent">{{ summary.absent }}</td>
+        </tr>
+    </table>
+    {% endif %}
+</div>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Student</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="navbar">
+    <h2>Attendance System</h2>
+    <a class="logout" href="/dashboard">Back</a>
+</div>
+
+<div class="container">
+
+    <h1>Add New Student</h1>
+    <p>Enter student details below</p>
+    {% if existing %}
+    <div style="background-color: #ffebee; border: 1px solid #f44336; padding: 10px; margin-bottom: 20px; border-radius: 5px;">
+        <p style="color: #d32f2f; font-weight: bold; margin: 0;">
+            {{ existing }}
+        </p>
+    </div>
+    {% endif %}
+
+
+    <div class="form-card">
+
+        <form method="post">
+            <table class="form-table">
+                <tr>
+                    <td><label>Student Name</label></td>
+                    <td><input type="text" name="name" required></td>
+                </tr>
+
+                <tr>
+                    <td><label>Roll Number</label></td>
+                    <td><input type="text" name="roll" required></td>
+                </tr>
+
+                <tr>
+                    <td><label>Class</label></td>
+                    <td><input type="text" name="class" required></td>
+                </tr>
+            </table>
+
+            <div class="btn-center">
+                <button class="main-btn">Add Student</button>
+            </div>
+        </form>
+        
+
+    </div>
+
+</div>
+
+</body>
+</html>

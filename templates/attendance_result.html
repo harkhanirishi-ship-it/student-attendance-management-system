@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Attendance Result</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Student Attendance Result</h1>
+
+    <form method="post">
+        <label>Select Student:</label>
+        <select name="student_id" required>
+            <option value="">-- Select Student --</option>
+            {% for s in students %}
+            <option value="{{ s.id }}">{{ s.name }} ({{ s.roll }})</option>
+            {% endfor %}
+        </select>
+
+        <button class="main-btn">Check Result</button>
+    </form>
+
+    {% if result_data %}
+    <table class="styled-table">
+        <tr>
+            <th>Total Days</th>
+            <th>Present</th>
+            <th>Absent</th>
+            <th>Percentage</th>
+            <th>Result</th>
+        </tr>
+        <tr>
+            <td>{{ result_data.total }}</td>
+            <td>{{ result_data.present }}</td>
+            <td>{{ result_data.absent }}</td>
+            <td>{{ result_data.percentage }}%</td>
+            <td>
+                {% if result_data.result == 'PASS' %}
+                    <span class="pass">PASS</span>
+                {% else %}
+                    <span class="fail">FAIL</span>
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+    {% endif %}
+</div>
+
+</body>
+</html>
